@@ -36,4 +36,86 @@ End sub
 const PI = 3.14159  // 后续就不能修改PI了
 ```
 
-## 循环
+## 流程控制
+### 循环
+* For 循环
+```
+For i = 11 To 20 Step 1  // Step 1 可以省略
+    Cells(i, 6) = Cells(i, 6) / rate
+    // 中间可以修改i, 但是不建议
+Next i  // i 可以省略。多个循环可以指定那个for的continue
+```
+* While 循环
+```
+Dim i
+i = 2
+While Cells(i, 1) <> ""
+    If Cells(i, 2) < 60 Then
+        Cells(i, 2).Font.Color = vbRed
+    End If
+    i = i + 1
+WEND
+# 或者用DO While
+Do While Cells(i, 1) <> ""
+    If Cells(i, 2) < 60 Then
+        Cells(i, 2).Font.Color = vbRed
+    End If
+    i = i + 1
+Loop
+```
+
+### 判断
+```
+if score >= 60 then
+    Cells(8, 6) = "及格"
+Elseif score <= 30 then
+    Cells(8, 6) = "你退学吧"
+Else  // else可以没有
+    Cells(8, 6) = "不及格"
+End If
+
+if score < 10 Then Cells(8, 6) = "没得救了"
+if score <> 100 Then  // 不等于用<>
+End if
+```
+
+## 调试
+* 设置断点
+点击代码左侧. 然后单步执行。如果想知道这时候的某个变量是多少，只要把鼠标移动到变量上
+* 单独执行
+* 添加监视
+可以一直看某个变量的值
+
+## 字符串
+* 用双括号括起来.
+```
+s1 = "你好, "
+s2 = s1 & "Every One!"  // 拼接，前后要有空格
+```
+
+## 逻辑运算
+And Or Not
+
+## 单元格
+* 修改字体颜色
+```
+Range("A3:B5").Font.Color = -16776961
+```
+
+## 录制宏
+通过录制宏，然后查看宏的代码可以查看很多想知道的属性
+```
+Rows("6:6").Select
+Selection.Delete Shift:=x1Up
+Range("E7").Select
+With Selection.Font
+    .Color = -16776961
+    .TintAndShare = 0
+```
+
+## 注释
+使用Rem或者单引号
+```
+Rem i 代表行号
+' j 代表列号
+```
