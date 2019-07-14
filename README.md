@@ -7,6 +7,11 @@ vba-reference
 
 # VBA语言基础
 ## 变量
+* 基础
+```
+x = Cells(5, 3)  // x 等于 C5的值
+Set x = Cells(5, 3)  // x 等于 C5这个单元格对象
+```
 * [单元格读取赋值](./01单元格读取赋值.xlsm)
 ```
 Sub 做加法()
@@ -119,3 +124,59 @@ With Selection.Font
 Rem i 代表行号
 ' j 代表列号
 ```
+
+## 函数调用
+### 过程
+```
+Sub sumAll()
+End Sub
+
+Sub allScore()
+    Call sumAll  // Call可以省略
+End Sub
+```
+### 函数
+能返回结果的过程。 定义完函数后，在单元格里面可以直接使用`=客户分类(A2)`来得到结果
+* 返回数据以及传入参数
+```
+Function 客户分类(s)
+    客户分类 = level  // 最后函数名 = 值，就会把值返回
+End Function
+Sub 分析()
+    score = 10
+    level = 客户分类(score)
+    Cells(i, 4) = level
+End Sub
+```
+
+## 参考
+### Application
+* WorkBooks
+### WorkBook
+* WorkSheets
+    * 获取某个工作表
+    ```
+    WorkSheets(1)
+    WorkSheets("总分榜")
+    ```
+    * Count
+    返回Worksheets的数量
+    WorkSheets.count
+    * Add
+    新建一个新的工作表
+    ```
+    Set w1 = WorkSheets.Add
+    w1.Cells(5, 3) = 100
+    ```
+    * Name
+    返回工作表的名字
+### WorkSheet
+* Cells
+```
+Sub test()
+    Dim w1 As Worksheet
+    Set w1 = Worksheets(3)
+    w1.Cells(5, 3) = 100
+End Sub
+```
+### Range
