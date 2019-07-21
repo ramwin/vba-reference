@@ -68,6 +68,11 @@ Do While Cells(i, 1) <> ""
     i = i + 1
 Loop
 ```
+* 循环对象
+```
+For Each a In b
+Next a
+```
 
 ### 判断
 ```
@@ -90,6 +95,10 @@ End if
 * 单独执行
 * 添加监视
 可以一直看某个变量的值
+* 弹出消息框
+```
+MsgBox "你好"
+```
 
 ## 字符串
 * 用双括号括起来.
@@ -97,6 +106,23 @@ End if
 s1 = "你好, "
 s2 = s1 & "Every One!"  // 拼接，前后要有空格
 ```
+* len
+返回字符串的长度
+```
+s = " 字符串 "
+a = len(s)
+MsgBox a
+```
+* Replace
+```
+Replace(s, " ", ",")  // 把s里面的空格替换成逗号
+```
+* LCase: 转化成小写
+* UCase: 转化成大写
+* Left(s, count): 返回s从左往右4位
+* Right
+* Mid(s, from, count)：
+* InStr([i, ]s, a) 返回a在s里面的位置(从第i个位置开始搜索)
 
 ## 逻辑运算
 And Or Not
@@ -179,4 +205,55 @@ Sub test()
     w1.Cells(5, 3) = 100
 End Sub
 ```
+
 ### Range
+```
+Range("D5")
+Range("B3:F7")
+Range("A2, B7:F9, C8:D6")
+Set r = Range(Cells(2, 3), Cells(5, 7))
+```
+* Value: 修改数据
+value可以省略，默认不写就是直接修改Value属性
+* ClearContents: 删除所有数据，不删除格式
+* Font: 修改字体
+    * Size:
+    * Color: RGB(红, 绿, 蓝)
+    * Bold = True
+    * Italic = False
+    ```
+    r.Font.Size = 15
+    r.Font.Color = RGB(255, 0, 0)
+    这样写太麻烦了，所有有with功能
+    With r.Font
+        .Size = 15
+        .Color = RGB(255, 0, 0)
+    ```
+* Interior: 内部特征（背景什么的）
+* ClearFormats: 清楚格式
+* Clear: 清楚格式和内容
+* Merge: 把所有单元格合并成一个单元格
+
+### Application
+* ActiveWorkbook
+* ActiveSheet
+* 使用excel的公式
+```
+Application.WorksheetFunction.Max(Range("B2:D7"))
+```
+* DisplayAlters
+```
+application.DisplayAlters = False  # 不显示警告。注意执行完毕后，一定要设置回False
+```
+* Quit
+
+## 系统函数
+## 不同文件的处理
+* 打开文件
+```
+Set wb = Workbooks.Open("D:\季度汇总\4月.xlsx")
+wb.Close  # 关闭文件
+Set wb = Workbooks.add
+wb.SaveAs "D:\测试.xlsx"
+wb.Close
+```
